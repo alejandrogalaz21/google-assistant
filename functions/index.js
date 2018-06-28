@@ -1,5 +1,5 @@
 // Copyright 2018, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the 'License');
+// Licensed under the Apache License, Version 2.0 (the 'License')
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
@@ -14,21 +14,21 @@
 'use strict';
 
 // Import the Dialogflow module from the Actions on Google client library.
-const {dialogflow} = require('actions-on-google');
+const {dialogflow} = require('actions-on-google')
 
 // Import the firebase-functions package for deployment.
-const functions = require('firebase-functions');
+const functions = require('firebase-functions')
 
 // Instantiate the Dialogflow client.
-const app = dialogflow({debug: true});
+const app = dialogflow({debug: true})
 
 // Handle the Dialogflow intent named 'favorite color'.
 // The intent collects a parameter named 'color'.
 app.intent('favorite color', (conv, {color}) => {
-    const luckyNumber = color.length;
+    const luckyNumber = color.length
     // Respond with the user's lucky number and end the conversation.
-    conv.close('Your lucky number is ' + luckyNumber);
-});
+    conv.close('Your lucky number is ' + luckyNumber)
+})
 
 // Set the DialogflowApp object to handle the HTTPS POST request.
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app)
