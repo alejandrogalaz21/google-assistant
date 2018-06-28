@@ -28,3 +28,20 @@ Authorize the Firebase CLI by running:
 firebase login
 ```
 
+Set Project ID :
+
+```
+firebase use <PROJECT_ID>
+```
+
+Run the following command in the terminal to install dependencies :
+
+```
+npm install
+```
+
+Deploy your webhook to Firebase :
+
+```
+firebase deploy
+```
