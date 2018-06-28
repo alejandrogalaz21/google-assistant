@@ -1,5 +1,5 @@
-# google-assistant
-Google Assistant
+# Google Assistant
+Simple Demo for Google Assistant App
 
 ## Getting Started
 
