@@ -6,4 +6,6 @@ const jedi = {
   age: 57
 }
 
+
+
 console.log(tableLog(jedi))

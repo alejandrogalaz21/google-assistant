@@ -14,8 +14,9 @@
 'use strict'
 
 // Import the Dialogflow module from the Actions on Google client library.
-const {dialogflow, Table} = require('actions-on-google')
+const {dialogflow, Table, SignIn} = require('actions-on-google')
 
+// Import Custome Helpers
 const {createRows , tableLog} = require('./lib/richResponses')
 
 
@@ -23,12 +24,32 @@ const {createRows , tableLog} = require('./lib/richResponses')
 const functions = require('firebase-functions')
 
 // Instantiate the Dialogflow client.
-const app = dialogflow({debug: true})
+const app = dialogflow({
+    debug: true,
+    clientId: '975660232612-vjvdcsqpkrutaegemvc0vsait4rd1l3p.apps.googleusercontent.com'
+})
 
 // Handle the Dialogflow intent named 'Default Welcome Intent'.
 app.intent('Default Welcome Intent', (conv) => {
-    conv.ask('here ready to help you master  👽' )
+    conv.ask(new SignIn('To get your account details'))
 })
+
+// Create a Dialogflow intent with the `actions_intent_SIGN_IN` event
+app.intent('Get Signin', (conv, params, signin) => {
+    if (signin.status === 'OK') {
+      
+      const payload = conv.user.profile.payload
+      const log = tableLog(payload)
+
+      conv.ask(`here ready to help you master  ${payload.name} what is  your favorite Color ? `)
+      conv.ask(`your account details.`)
+      conv.ask(log)   
+    } else {
+      conv.ask(`I won't be able to save your data, but what do you want to do next?`)
+    }
+  })
+
+
 
 // Handle the Dialogflow intent named 'favorite color'.
 // The intent collects a parameter named 'color'.
@@ -49,7 +70,7 @@ app.intent('favorite color', (conv, {color}) => {
 // Handle the Dialogflow intent named 'Unrecognized Deep Link'.
 // The intent collects a parameter named 'any'.
 app.intent('Unrecognized Deep Link', (conv, {any}) => {
-    conv.ask(`Sorry, I am not sure about ${any} . What's your favorite color ?`)
+    conv.ask(`Sorry, I am not sure about ${any} . What's your favorite color 👽 ?`)
            
 })
 
