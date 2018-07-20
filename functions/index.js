@@ -16,6 +16,9 @@
 // Import the Dialogflow module from the Actions on Google client library.
 const {dialogflow, Table} = require('actions-on-google')
 
+const {createRows , tableLog} = require('./lib/richResponses')
+
+
 // Import the firebase-functions package for deployment.
 const functions = require('firebase-functions')
 
@@ -42,6 +45,14 @@ app.intent('favorite color', (conv, {color}) => {
       }))       
 })
 
+
+// Handle the Dialogflow intent named 'Unrecognized Deep Link'.
+// The intent collects a parameter named 'any'.
+app.intent('Unrecognized Deep Link', (conv, {any}) => {
+    conv.ask(`Sorry, I am not sure about ${any} . What's your favorite color ?`)
+           
+})
+
 // Handle the Dialogflow intent named 'Two Params'.
 // The intent collects the parameters named 'color , date'.
 app.intent('Two Params', (conv, {color, date}) => {
@@ -56,8 +67,8 @@ app.intent('Two Params', (conv, {color, date}) => {
               ['date', date]
             ],
           }))
-    
-                
+
+        conv.ask(tableLog(date))                  
 })
 
 
