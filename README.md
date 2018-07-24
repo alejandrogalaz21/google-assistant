@@ -28,7 +28,7 @@ Authorize the Firebase CLI by running:
 firebase login
 ```
 
-Set Project ID :
+Set The Actions on Google Project ID :
 
 ```
 firebase use <PROJECT_ID>

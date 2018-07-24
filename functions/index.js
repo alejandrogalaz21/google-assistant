@@ -31,7 +31,7 @@ const app = dialogflow({
 
 // Handle the Dialogflow intent named 'Default Welcome Intent'.
 app.intent('Default Welcome Intent', (conv) => {
-    conv.ask(new SignIn('To get your account details'))
+    conv.ask( new SignIn('To get your account details') )
 })
 
 // Create a Dialogflow intent with the `actions_intent_SIGN_IN` event
@@ -53,11 +53,11 @@ app.intent('Get Signin', (conv, params, signin) => {
 
 // Handle the Dialogflow intent named 'favorite color'.
 // The intent collects a parameter named 'color'.
-app.intent('favorite color', (conv, {color}) => {
+app.intent('favorite color', (conv, {color} ) => {
     const luckyNumber = color.length
     // Respond with the user's lucky number and end the conversation.
     conv.ask('Your lucky number is ' + luckyNumber)
-    conv.ask(new Table({
+    conv.ask( new Table( {
         dividers: true,
         columns: ['Key', 'Value'],
         rows: [
@@ -76,7 +76,7 @@ app.intent('Unrecognized Deep Link', (conv, {any}) => {
 
 // Handle the Dialogflow intent named 'Two Params'.
 // The intent collects the parameters named 'color , date'.
-app.intent('Two Params', (conv, {color, date}) => {
+app.intent('Three Params', (conv, {color, date, geoCity}) => {
     conv.ask('I am looking for the results')
   
         conv.ask('Here are the results : ')
@@ -85,11 +85,13 @@ app.intent('Two Params', (conv, {color, date}) => {
             columns: ['Key', 'Value'],
             rows: [
               ['color', color],
-              ['date', date]
+              ['date', date],
+              ['city', geoCity]
+            
             ],
           }))
 
-        conv.ask(tableLog(date))                  
+       // conv.ask(tableLog(date))                  
 })
 
 

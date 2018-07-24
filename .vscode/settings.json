@@ -1,0 +1,16 @@
+{
+  "editor.fontSize": 10.5,
+  "editor.tabSize": 2,
+  "emmet.includeLanguages": {
+      "Vue-HTML ": "HTML ",
+      "JavaScript ": "javascriptreact "
+  },
+  "workbench.startupEditor": "newUntitledFile",
+  "window.zoomLevel": 0,
+  "materialTheme.fixIconsRunning": false,
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.colorTheme": "Dracula",
+  
+
+
+}
